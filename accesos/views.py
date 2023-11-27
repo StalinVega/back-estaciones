@@ -68,7 +68,33 @@ class GetAllAccesos(viewsets.GenericViewSet):
 
 
 class GetAllMetodo_Acceso(viewsets.GenericViewSet):
-    @swagger_auto_schema(auto_schema=None)
+    @swagger_auto_schema(
+        operation_description="Obtiene información de metodo de acceso.",
+        responses={
+            status.HTTP_200_OK: openapi.Response(description="Responde los datos de metodo de acceso",
+                                                 schema=openapi.Schema(
+                                                     type=openapi.TYPE_ARRAY,
+                                                     items=openapi.Schema(
+                                                         type=openapi.TYPE_OBJECT,
+                                                         properties={
+                                                             'id': openapi.Schema(type=openapi.TYPE_NUMBER, description="es el id de metodo de acceso"),
+                                                             'nombre': openapi.Schema(type=openapi.TYPE_STRING, description="Es el nombre del metodo de acceso"),
+                                                             
+                                                             
+                                                         },
+                                                     ),
+                                                 ),),
+            status.HTTP_204_NO_CONTENT: openapi.Response(
+                description="No se encontraron datos en metodo de acceso",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'msg': openapi.Schema(type=openapi.TYPE_STRING, description="vacio"),
+                    },
+                ),
+            ),
+        },
+    )
     @action(detail=False, methods=['get'])
     def getMetodoAcceso(self, request):
 

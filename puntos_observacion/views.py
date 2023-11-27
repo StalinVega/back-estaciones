@@ -12,7 +12,33 @@ from drf_yasg import openapi
 # Create your views here.
 
 class GetAllPuntoObservacion(viewsets.GenericViewSet):
-    @swagger_auto_schema(auto_schema=None)
+    @swagger_auto_schema(
+        operation_description="Obtiene información del punto de observacion.",
+        responses={
+            status.HTTP_200_OK: openapi.Response(description="Responde los datos del punto de observacion",
+                                                 schema=openapi.Schema(
+                                                     type=openapi.TYPE_ARRAY,
+                                                     items=openapi.Schema(
+                                                         type=openapi.TYPE_OBJECT,
+                                                         properties={
+                                                             'id': openapi.Schema(type=openapi.TYPE_NUMBER, description="es el id del punto de observacion"),
+                                                             'nombre': openapi.Schema(type=openapi.TYPE_STRING, description="Es el nombre del punto de observacion"),
+                                                             
+                                                             
+                                                         },
+                                                     ),
+                                                 ),),
+            status.HTTP_204_NO_CONTENT: openapi.Response(
+                description="No se encontraron datos del punto de oservacion",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'msg': openapi.Schema(type=openapi.TYPE_STRING, description="vacio"),
+                    },
+                ),
+            ),
+        },
+    )
     @action(detail=False, methods=['get'])
     def lista(self, request):
         query = f"SELECT distinct id_punto_obs, codigo FROM administrativo.vta_estaciones;"
@@ -62,7 +88,7 @@ class GetIdPuntoObservacion(viewsets.GenericViewSet):
         return Response(data, status=status.HTTP_200_OK)
 
 
-class insertarPunto(viewsets.ModelViewSet):
+class insertarPunto(viewsets.GenericViewSet):
 
     @swagger_auto_schema(auto_schema=None)
     @action(detail=False, methods=['POST'])

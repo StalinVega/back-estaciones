@@ -4,7 +4,6 @@ from rest_framework import status, viewsets
 # Serializers
 from .serializers import Tipos_observacion_Serializer
 from utils.database import searchPostgres
-from rest_framework.renderers import JSONRenderer
 # Swagger
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -12,7 +11,33 @@ from drf_yasg import openapi
 
 
 class GetAllListaObservacion(viewsets.GenericViewSet):
-    @swagger_auto_schema(auto_schema=None)
+    @swagger_auto_schema(
+        operation_description="Obtiene información de los tipos de captor.",
+        responses={
+            status.HTTP_200_OK: openapi.Response(description="Responde los datos de los tipos de captor",
+                                                 schema=openapi.Schema(
+                                                     type=openapi.TYPE_ARRAY,
+                                                     items=openapi.Schema(
+                                                         type=openapi.TYPE_OBJECT,
+                                                         properties={
+                                                             'id': openapi.Schema(type=openapi.TYPE_NUMBER, description="es el id del captor"),
+                                                             'nombre': openapi.Schema(type=openapi.TYPE_STRING, description="Es el nombre del captor"),
+                                                             
+                                                             
+                                                         },
+                                                     ),
+                                                 ),),
+            status.HTTP_204_NO_CONTENT: openapi.Response(
+                description="No se encontraron datos de los captor",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'msg': openapi.Schema(type=openapi.TYPE_STRING, description="vacio"),
+                    },
+                ),
+            ),
+        },
+    )
     @action(detail=False, methods=['get'])
     def lista(self, request):
         query = f"SELECT distinct id_captor,captor FROM administrativo.vta_estaciones;"

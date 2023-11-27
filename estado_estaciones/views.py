@@ -14,7 +14,33 @@ from drf_yasg import openapi
 
 class Lista_estado_estaciones(viewsets.GenericViewSet):
 
-    @swagger_auto_schema(auto_schema=None)
+    @swagger_auto_schema(
+        operation_description="Obtiene el lisado del tipo de estado de las estaciones.",
+        responses={
+            status.HTTP_200_OK: openapi.Response(description="Responde los datos de estado de estaciones",
+                                                 schema=openapi.Schema(
+                                                     type=openapi.TYPE_ARRAY,
+                                                     items=openapi.Schema(
+                                                         type=openapi.TYPE_OBJECT,
+                                                         properties={
+                                                             'id': openapi.Schema(type=openapi.TYPE_NUMBER, description="es el id del estado de estacion"),
+                                                             'nombre': openapi.Schema(type=openapi.TYPE_STRING, description="Es el nombre del estado de estacion"),
+                                                             
+                                                             
+                                                         },
+                                                     ),
+                                                 ),),
+            status.HTTP_204_NO_CONTENT: openapi.Response(
+                description="No se encontraron datos para el acceso",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'msg': openapi.Schema(type=openapi.TYPE_STRING, description="vacio"),
+                    },
+                ),
+            ),
+        },
+    )
     @action(detail=False, methods=['GET'])
     def lista(self, request):
         if request.method == 'GET':
