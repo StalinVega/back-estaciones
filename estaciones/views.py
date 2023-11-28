@@ -1,4 +1,5 @@
 from rest_framework.decorators import action
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 import json
@@ -215,10 +216,12 @@ class GetIdEstacion(viewsets.GenericViewSet):
             ),
         },
     )
-    def retrieve(self, request, pk=None):
+    @action(detail=False, methods=['GET'])
+    def estacion(self, request):
+        pk=request.GET.get('id')
         try:
             # Recupera el producto desde la base de datos usando el ID proporcionado
-            query = f"SELECT distinct id_estacion,id_punto_obs,propietario,id_captor,punto_obs,img_norte,img_sur,img_este,img_oeste,croquis FROM administrativo.vta_estaciones where id_estacion='{pk}';"
+            query = f"SELECT distinct id_estacion,id_punto_obs,id_propietario,id_captor,punto_obs,img_norte,img_sur,img_este,img_oeste,croquis FROM administrativo.vta_estaciones where id_estacion='{pk}';"
             po = searchPostgres(query)
         except Estaciones.DoesNotExist:
             # Si el objeto no existe, puedes manejarlo según tus necesidades

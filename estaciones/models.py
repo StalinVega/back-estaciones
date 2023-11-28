@@ -5,7 +5,7 @@ from django.db import models
 class Estaciones(models.Model):
     id_estacion=models.IntegerField(blank=True)
     id_punto_obs=models.IntegerField(blank=True)
-    propietario=models.IntegerField(blank=True)
+    id_propietario=models.IntegerField(blank=True)
     id_captor=models.IntegerField(blank=True)
     img_norte=models.BinaryField()
     img_sur=models.BinaryField()

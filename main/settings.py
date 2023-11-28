@@ -165,5 +165,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if DEBUG == True:
     STATIC_URL = '/static/'
-    STATIC_URL = 'api_ficha_crea/static/'
+STATIC_URL = '/api_ficha_crea/static/'
 STATIC_ROOT = BASE_DIR/'static'

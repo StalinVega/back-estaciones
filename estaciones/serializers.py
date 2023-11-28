@@ -16,7 +16,7 @@ class Estaciones_Serializer(serializers.ModelSerializer):
 class Estaciones_id_Serializer(serializers.ModelSerializer):
     id = serializers.IntegerField(source='id_estacion')
     idPuntoObservacion = serializers.IntegerField(source='id_punto_obs')
-    idPropietario = serializers.IntegerField(source='propietario')
+    idPropietario = serializers.IntegerField(source='id_propietario')
     idTipoCaptor = serializers.IntegerField(source='id_captor')
     nombre = serializers.CharField(source='punto_obs')
     imgNorte = serializers.CharField(source='img_norte')

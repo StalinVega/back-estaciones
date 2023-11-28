@@ -67,7 +67,9 @@ class GetAllPuntoObservacion(viewsets.GenericViewSet):
 
 class GetIdPuntoObservacion(viewsets.GenericViewSet):
     @swagger_auto_schema(auto_schema=None)
-    def retrieve(self, request, pk=None):
+    @action(detail=False, methods=['GET'])
+    def puntoObs(self, request):
+        pk=request.GET.get('id')
         try:
             # Recupera el producto desde la base de datos usando el ID proporcionado
             query = f"SELECT distinct id_punto_obs,id_acceso,id_metodo_acceso,id_cuenca,id_provincia,id_canton,id_parroquia,codigo,punto_obs,propietario FROM administrativo.vta_estaciones where id_punto_obs='{pk}';"
