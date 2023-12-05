@@ -152,36 +152,21 @@ class Busca_Estaciones(viewsets.GenericViewSet):
 class GetIdEstacion(viewsets.GenericViewSet):
 
     @swagger_auto_schema(
-        operation_summary="Obtiene la informacion de la estacion",
+        operation_summary="Obtiene informacion de la estacion por el id de estación",
         operation_description="""
-        Retrieve station information.
 
         Args:
             request (HttpRequest): The HTTP request object containing the data object.
             
-            example
-            https://inamhi.gob.ec/api_ficha_crea/estaciones/63953
+            Params:
+            id: 64297
             
-            Returns:
-            {
-                "success": true,
-                "msg": "ok",
-                "data": [
-                 {
-                    "id": 63953,
-                    "idPuntoObservacion": 831,
-                    "idPropietario": 26,
-                    "idTipoCaptor": 2,
-                    "nombre": "AGLLA-CHECA",
-                    "imgNorte": null,
-                    "imgSur": null,
-                    "imgEste": null,
-                    "imgOeste": null,
-                    "imgCroquis": null
-                }
-            ]
-            }
+
+            (debe ser de la estacion)
         """,
+        manual_parameters=[
+            openapi.Parameter('id', openapi.IN_QUERY, description="Es el id de la estacion", type=openapi.TYPE_INTEGER),
+        ],
         responses={
             status.HTTP_200_OK: openapi.Response(description="Responde la informacion de una estacion en especifico",
                                                  schema=openapi.Schema(

@@ -6,8 +6,9 @@ from puntos_observacion import views
 
 router = DefaultRouter()
 router.register(r'puntos-observacion', views.GetAllPuntoObservacion,basename='puntos-observacion')
-router.register(r'puntos', views.GetIdPuntoObservacion,basename='puntos')
-router.register(r'ingreso', views.insertarPunto,basename='ingreso')
+router.register(r'puntos-observacion', views.GetIdPuntoObservacion,basename='puntos-observacion')
+router.register(r'puntos-observacion', views.insertarPunto,basename='puntos-observacion')
+router.register(r'puntos-observacion', views.GetCodigo,basename='puntos-observacion')
 
 
 

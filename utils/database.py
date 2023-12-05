@@ -79,17 +79,29 @@ class ConexionPostgres:
         """
         if tabla and campo_id and valor_id:
             if self.existe_registro(tabla, campo_id, valor_id):
-                print(f"El registro con {campo_id}={valor_id} ya existe.")
-                return False
+
+                data={
+                    'success': False,
+                    'msg': f"El registro con {campo_id}={valor_id} ya existe.",
+                }
+                return data
 
         try:
             self._cursor.execute(query, params)
             self._conexion.commit()
-            return True
+            data={
+                    'success': True,
+                    'msg': f"Registro Correcto",
+                }
+
+            return data
         except IntegrityError as e:
-            print(f"Error al insertar datos: {e}")
+            data={
+                    'success': False,
+                    'msg': f"Error al insertar datos: {e}",
+                }
             self._conexion.rollback()
-            return False
+            return data
         except Exception as e:
             print(f"Otro error: {e}")
             self._conexion.rollback()

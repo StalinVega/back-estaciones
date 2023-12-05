@@ -23,7 +23,7 @@ class PuntoObservacionBusqueda(models.Model):
     id_parroquia=models.IntegerField(blank=True)
     codigo = models.CharField(max_length=50)
     punto_obs =models.CharField(max_length=50)
-    propietario=models.IntegerField(blank=True)
+    id_propietario=models.IntegerField(blank=True)
     
     class Meta:
         managed = False  # Desactiva las migraciones automáticas
@@ -57,4 +57,15 @@ class insertarPuntoObs(models.Model):
     def __str__(self):
         return self.name
     
+
+class UltimoCodigo(models.Model):
+    tipo=models.CharField()
+    codigo= models.CharField()
+    
+    class Meta:
+        managed = False  # Desactiva las migraciones automáticas
+        db_table = 'administrativo.vta_estaciones'  # Usa el mismo nombre de la tabla en PostgreSQL
+
+    def __str__(self):
+        return self.name
 

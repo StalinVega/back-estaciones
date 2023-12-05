@@ -43,6 +43,7 @@ urlpatterns = [
     path('api_ficha_crea/',include('estado_estaciones.urls')),
     path('api_ficha_crea/',include('puntos_observacion.urls')),
     path('api_ficha_crea/',include('estaciones.urls')),
+    path('api_ficha_crea/',include('operadoras.urls')),
     # Rutas para Swagger
     path('api_ficha_crea/docs/', schema_view.with_ui('swagger',
          cache_timeout=0), name='schema-swagger-ui'),
