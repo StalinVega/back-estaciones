@@ -42,7 +42,7 @@ class GetAllOwners(viewsets.GenericViewSet):
     )
     @action(detail=False, methods=['get'])
     def lista(self, request):
-        query = f"SELECT distinct id_propietario,propietario FROM administrativo.vta_estaciones ORDER BY nombre_propietario;"
+        query = f"SELECT distinct id_propietario,propietario FROM administrativo.vta_estaciones ORDER BY propietario;"
 
         estaciones = searchPostgres(query)
         # Convierte ReturnList en una lista de Python
