@@ -43,7 +43,7 @@ class GetAllAccesos(viewsets.GenericViewSet):
     @action(detail=False, methods=['get'])
     def getAcceso(self, request):
 
-        query = f"SELECT distinct id_acceso,acceso FROM administrativo.vta_estaciones;"
+        query = f"SELECT distinct id_acceso,nombre_acceso FROM administrativo.vta_estaciones;"
 
         acceso = searchPostgres(query)
         # Convierte ReturnList en una lista de Python
@@ -98,7 +98,7 @@ class GetAllMetodo_Acceso(viewsets.GenericViewSet):
     @action(detail=False, methods=['get'])
     def getMetodoAcceso(self, request):
 
-        query = f"SELECT distinct id_metodo_acceso, metodo_acceso FROM administrativo.vta_estaciones;"
+        query = f"SELECT distinct id_metodo_acceso, nombre_metodo_acceso FROM administrativo.vta_estaciones;"
 
         m_acceso = searchPostgres(query)
 

@@ -3,7 +3,7 @@ from django.db import models
     
 class Accesos(models.Model):
     id_acceso=models.IntegerField(blank=True)
-    acceso= models.CharField(max_length=50)
+    nombre_acceso= models.CharField(max_length=50)
     
     class Meta:
         managed = False  # Desactiva las migraciones automáticas
@@ -14,7 +14,7 @@ class Accesos(models.Model):
     
 class Metodos_Acceso(models.Model):
     id_metodo_acceso=models.IntegerField(blank=True)
-    metodo_acceso= models.CharField(max_length=50)
+    nombre_metodo_acceso= models.CharField(max_length=50)
     
     class Meta:
         managed = False  # Desactiva las migraciones automáticas
