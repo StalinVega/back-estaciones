@@ -1,8 +1,8 @@
 from django.db import models
 # Create your models here.
 class Propietario(models.Model):
-    propietario=models.IntegerField(blank=True)
-    nombre_propietario = models.CharField(max_length=50)
+    id_propietario=models.IntegerField(blank=True)
+    propietario = models.CharField(max_length=50)
     
     class Meta:
         managed = False  # Desactiva las migraciones automáticas
