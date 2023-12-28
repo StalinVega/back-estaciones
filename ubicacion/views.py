@@ -264,7 +264,7 @@ class View_Parroquia(viewsets.GenericViewSet):
         },
     )
     @action(detail=False, methods=['POST'])
-    def post_parroquia(self, request):
+    def parroquia(self, request):
         if request.method == 'POST':
             data = json.loads(request.body)
             id_p = data.get('idProv')
